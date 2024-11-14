@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="profilestyle.css">
 </head>
 <body>
+    <!-- Navbar -->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -28,14 +30,12 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
+                        <a class="nav-link " href="home.html">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active" href="features.html">Features</a>
-                  </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link active" href="#">Features</a>
                     </li>
+                    
                     <li class="nav-item dropdown">
                         <!-- Profile Dropdown Button -->
                         <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,9 +43,11 @@
                         </a>
                         <!-- Dropdown Menu -->
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li class="dropdown-header text-center fw-bold" id="userEmail">User Email</li>
+                            <li class="dropdown-header text-center" id="userEmail">User Email</li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                            <li>
+                                <a href="#" class="dropdown-item logout-btn" onclick="logout()">Logout</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -107,9 +109,12 @@
             </div>
         </div>
     </div>
-    
+</section>
+<section class="cta-section1 text-white py-3" >
+  <div class="container text-center">
+  </div>
   </section>
-  <section class="cta-section text-white py-5">
+  <section class="cta-section text-white py-4">
     <div class="container text-center">
     </div>
 </section>
@@ -125,36 +130,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- JavaScript to Set User Email -->
-    <script>
-        // Store the user email on login (simulate with localStorage)
-        function setUserEmail() {
-            // Example: Simulate the email being entered by the user
-            const email = prompt("Please enter your email");  // Simulate email input for demo purposes
-            if (email) {
-                localStorage.setItem("userEmail", email);  // Store email in localStorage
-            }
-        }
-
-        // Function to get the logged-in user's email from localStorage
-        function getUserEmail() {
-            return localStorage.getItem("userEmail");  // Retrieve the email from localStorage
-        }
-
-        // Update the profile dropdown with the user's email after the page loads
-        document.addEventListener("DOMContentLoaded", function() {
-            const userEmail = getUserEmail();  // Get email from localStorage
-            if (userEmail) {
-                document.getElementById("userEmail").textContent = userEmail;  // Set the email in the dropdown
-            } else {
-                document.getElementById("userEmail").textContent = "Guest";  // Default if no email found
-            }
-        });
-
-        // Logout function (clear localStorage and redirect)
-        function logout() {
-            localStorage.removeItem("userEmail");  // Clear the user email
-            window.location.href = 'login.html';  // Redirect to login page
-        }
-    </script>
+    <script src="profilescript.js"></script>
 </body>
 </html>

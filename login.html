@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #b14814; /* Background color */
+            background-color: #b14814;
         }
         .container {
             display: flex;
@@ -26,7 +26,7 @@
             overflow: hidden;
         }
         .left {
-            background-color: #000000; /* Logo background color */
+            background-color: #000000;
             color: white;
             width: 40%;
             display: flex;
@@ -77,13 +77,13 @@
             color: #888;
         }
         .signin-button {
-            width: auto; /* Adjust width to fit content */
-            padding: 12px 40px; /* Smaller padding for a more compact button */
+            width: auto;
+            padding: 12px 40px;
             font-size: 1.2em;
             background-color: #f2a357;
             color: white;
             border: none;
-            border-radius: 50px; /* Makes it oval-shaped */
+            border-radius: 50px;
             cursor: pointer;
             margin-top: 10px;
             display: block;
@@ -149,8 +149,6 @@
             flex-grow: 1;
             border-top: 2px solid #ccc;
         }
-
-        /* Error message popup style */
         .error-message {
             display: none;
             background-color: #f44336;
@@ -160,51 +158,20 @@
             margin-bottom: 20px;
             border-radius: 4px;
         }
-
         @media (max-width: 1024px) {
             .container {
-                flex-direction: column; /* Stack columns on smaller screens */
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
             }
             .left {
-                width: 100%; /* Take full width for smaller screens */
+                width: 100%;
                 max-width: 100%;
                 padding: 20px 0;
             }
             .right {
                 padding: 20px;
                 text-align: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .signin-button,
-            .social-buttons button {
-                padding: 12px;
-                font-size: 1em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .left h1 {
-                font-size: 2em;
-            }
-            .right h2 {
-                font-size: 1.5em;
-            }
-            .form-group input[type="email"],
-            .form-group input[type="password"] {
-                padding: 8px;
-                font-size: 0.9em;
-            }
-            .signin-button,
-            .social-buttons button {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-            .signup-link {
-                font-size: 0.8em;
             }
         }
     </style>
@@ -221,7 +188,6 @@
     <div class="right">
         <h2>Sign in</h2>
 
-        <!-- Error message -->
         <div id="error-message" class="error-message">Incorrect email or password. Please try again.</div>
 
         <form onsubmit="loginUser(event)">
@@ -277,32 +243,29 @@
     }
 
     function loginUser(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const storedEmails = JSON.parse(localStorage.getItem('userEmails')) || [];
+        const storedPassword = localStorage.getItem('userPassword');
+        const errorMessage = document.getElementById('error-message');
 
-    const storedEmails = JSON.parse(localStorage.getItem('userEmails')) || [];
-    const storedPassword = localStorage.getItem('userPassword');
-    const errorMessage = document.getElementById('error-message');
-
-    // Check if the email exists in the stored list of emails
-    if (storedEmails.includes(email)) {
-        // Check if the entered password matches the stored password for the registered email
-        if (storedPassword === password) {
-            errorMessage.style.display = 'none'; // Hide error message
-            window.location.href = 'home.html';  // Redirect to homepage
+        // Check if the email exists in the stored list of emails
+        if (storedEmails.includes(email)) {
+            // Check if the entered password matches the stored password for the registered email
+            if (storedPassword === password) {
+                errorMessage.style.display = 'none';
+                localStorage.setItem('userEmail', email); // Save email to display on home page
+                window.location.href = 'home.html';
+            } else {
+                errorMessage.style.display = 'block';
+            }
         } else {
-            errorMessage.style.display = 'block';  // Show error message for incorrect password
+            errorMessage.style.display = 'block';
         }
-    } else {
-        errorMessage.style.display = 'block';  // Show error message for incorrect email
     }
-}
 </script>
-
-</body>
-</html>
 
 </body>
 </html>
